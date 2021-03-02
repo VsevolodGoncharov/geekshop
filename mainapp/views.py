@@ -10,11 +10,9 @@ def index(request):
     return render(request, 'mainapp/index.html', context)
 
 def products(request):
-    file = os.path.join(os.getcwd(), 'mainapp', 'fixtures', 'products.json')
-    with open(file, encoding='utf-8') as f:
-        products_list = json.load(f)
+    products_file = os.path.join(os.getcwd(), 'mainapp', 'fixtures', 'products.json')
     context = {
         'title': 'geekshop - Каталог товаров',
-        'products': products_list,
+        'products': json.load(open(products_file, encoding='utf-8')),
     }
     return render(request, 'mainapp/products.html', context)
